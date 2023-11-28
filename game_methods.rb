@@ -29,8 +29,9 @@ class GameMethods
 
     dealer.add_card(deck.take_card)
     dealer.add_card(deck.take_card)
-    
-    cls
+
+    dealer.move(deck.take_card)
+    user.move(deck.take_card)
 
     puts "Деньги игрока: #{user.bank} ||| Деньги дилера: #{dealer.bank}"
     puts "Карты игрока: #{user.show_cards}, очки игрока: #{user.points}"

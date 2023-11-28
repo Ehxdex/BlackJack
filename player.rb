@@ -15,6 +15,9 @@ class Player
     cards
   end
 
+  def move
+  end
+
   def points
     points = 0
     cards.each do |e|
