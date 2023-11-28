@@ -47,8 +47,8 @@ class Player
     @cards << card
   end
 
-  def delete_cards
-    @cards = []
+  def show_cards
+    cards
   end
 
   def points
@@ -71,13 +71,8 @@ class Player
 end
 
 class Dealer < Player
-
   def initialize
     super
-  end
-
-  def show_cards
-    @secret_cards.push(' * ' * @cards.size)
   end
 end
 
@@ -97,15 +92,15 @@ end
 class Game
   def define_winner(user, dealer)
     if dealer.points > 21
-      puts "Вы выиграли"
+      "Победил игрок"
     elsif user.points > 21
-      puts "Вы проиграли"
+      "Победил дилер"
     elsif user.points > dealer.points
-      puts "Вы выиграли"
+      "Победил игрок"
     elsif user.points < dealer.points
-      puts "Вы проиграли"
+      "Победил дилер"
     else 
-      puts "Ничья"
+      "Ничья"
     end
   end
 
@@ -122,11 +117,11 @@ class Game
     dealer.add_card(deck.take_card)
     dealer.add_card(deck.take_card)
 
-    puts "Ваши деньги: #{user.bank} | Деньги дилера #{dealer.bank}"
-    puts "Карты игрока: #{user.cards}, ваши очки: #{user.points}"
+    puts "Деньги игрока: #{user.bank} ||| Деньги дилера: #{dealer.bank}"
+    puts "Карты игрока: #{user.show_cards}, очки игрока: #{user.points}"
     puts "Карты дилера: #{dealer.cards}, очки дилера: #{dealer.points}"
 
-    define_winner(user, dealer)
+    puts define_winner(user, dealer)
   end
 end
 
