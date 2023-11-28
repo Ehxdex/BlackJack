@@ -19,7 +19,7 @@ class GameMethods
 
   def play_round
     user = User.new
-    dealer = Player.new
+    dealer = Dealer.new
 
     deck = Deck.new
     deck.cards_shuffle
@@ -34,7 +34,7 @@ class GameMethods
 
     puts "Деньги игрока: #{user.bank} ||| Деньги дилера: #{dealer.bank}"
     puts "Карты игрока: #{user.show_cards}, очки игрока: #{user.points}"
-    puts "Карты дилера: #{dealer.cards}, очки дилера: #{dealer.points}"
+    puts "Карты дилера: #{dealer.show_cards(secret=false)}, очки дилера: #{dealer.points}"
 
     puts define_winner(user, dealer)
   end
