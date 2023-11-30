@@ -10,15 +10,10 @@ class User < Player
     @name = gets.chomp.to_s
   end
 
-  def move(card)
+  def move
     puts "1. Добавить карту"
     puts "2. Открыть карты"
     puts "3. Пас"
     guess = gets.chomp.to_i
-    case guess
-    when 1 then self.add_card(card)
-    when 2 then # to do
-    when 3 then # to do
-    end
   end
 end

@@ -8,11 +8,15 @@ class Player
   end
 
   def add_card(card)
-    @cards << card
+    @cards << card if cards.size <= 2
   end
 
   def show_cards
     cards
+  end
+
+  def delete_cards
+    @cards = []
   end
 
   def move
