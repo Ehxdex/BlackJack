@@ -13,6 +13,13 @@ class GameMethods
     dealer.bank -= bet
   end
 
+  def game_message(user, dealer, flag)
+    puts "Деньги игрока: #{user.bank} ||| Деньги дилера: #{dealer.bank}"
+    puts "Карты игрока: #{user.show_cards}"
+    puts "Очки игрока: #{user.points}"
+    puts "Карты дилера: #{dealer.show_cards(flag)}"
+  end
+
   def define_winner(user, dealer)
     if dealer.points > 21 && dealer.points != user.points
       user.bank += @money_in_game
@@ -35,20 +42,20 @@ class GameMethods
 
   def play_round(user, dealer, deck)
     cls
-
+    make_bet(user, dealer, 10)
+    
     puts "Игра №#{@rounds += 1}"
     puts "Деньги в игре: #{@money_in_game}"
-    puts "Деньги игрока: #{user.bank} ||| Деньги дилера: #{dealer.bank}"
-    puts "Карты игрока: #{user.show_cards}, очки игрока: #{user.points}"
-    puts "Карты дилера: #{dealer.show_cards(secret=true)}"
 
+    game_message(user, dealer, true)
+    puts
     while true
       case user.move
       when 1
         user.add_card(deck.take_card)
         dealer.move(deck.take_card)
         break
-      when 2 then break
+      when 2 then break 
       when 3
         dealer.move(deck.take_card)
         break
@@ -56,11 +63,11 @@ class GameMethods
     end
     
     cls
-    puts define_winner(user, dealer)
+    puts ">>>>>> #{define_winner(user, dealer)} <<<<<<"
 
-    puts "Деньги игрока: #{user.bank} ||| Деньги дилера: #{dealer.bank}"
-    puts "Карты игрока: #{user.show_cards}, очки игрока: #{user.points}"
-    puts "Карты дилера: #{dealer.show_cards(secret=false)}, очки дилера: #{dealer.points}"
+    game_message(user, dealer, false)
+    puts "Очки дилера #{dealer.points}"
+    puts
   end
 
   def start_game
@@ -79,8 +86,6 @@ class GameMethods
 
       dealer.add_card(deck.take_card)
       dealer.add_card(deck.take_card)
-      
-      make_bet(user, dealer, 10)
 
       play_round(user, dealer, deck)
 
