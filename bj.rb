@@ -6,4 +6,4 @@ require_relative 'user'
 require_relative 'game_methods'
 
 game = GameMethods.new
-game.play_round
+game.start_game
