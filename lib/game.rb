@@ -87,7 +87,13 @@ class Game
     user = User.new
     dealer = Dealer.new
 
+    user.enter_user_name
+    cls
+    puts "#{user.name}, добро пожаловать в игру Black Jack!"
+    sleep 3
+
     play_round(user, dealer)
+
     while true
       puts "Хотите сыграть еще раунд y(yes)/n(no)"
       guess = gets.chomp
@@ -95,7 +101,7 @@ class Game
       if guess == "y" || guess == "yes"
         play_round(user, dealer)
       else
-        puts "Конец игры"
+        puts "Конец игры."
         break
       end
     end
