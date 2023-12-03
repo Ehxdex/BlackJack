@@ -20,6 +20,15 @@ class Game
     puts "Карты дилера: #{dealer.show_cards(flag)}"
   end
 
+  def final_message(user, dealer)
+    cls
+    puts ">>>>>> #{define_winner(user, dealer)} <<<<<<"
+  
+    game_message(user, dealer, false)
+    puts "Очки дилера #{dealer.points}"
+    puts
+  end
+
   def define_winner(user, dealer)
     if dealer.points > 21 && dealer.points != user.points
       user.bank += @money_in_game
@@ -41,7 +50,7 @@ class Game
   end
 
   def play_round(user, dealer)
-    # cls
+    cls
     user.delete_cards
     dealer.delete_cards
 
@@ -65,27 +74,12 @@ class Game
     when 1
       user.add_card(deck.take_card)
       dealer.move(deck.take_card)
-      # cls
-      puts ">>>>>> #{define_winner(user, dealer)} <<<<<<"
-  
-      game_message(user, dealer, false)
-      puts "Очки дилера #{dealer.points}"
-      puts
+      final_message(user, dealer)
     when 2
-      # cls
-      puts ">>>>>> #{define_winner(user, dealer)} <<<<<<"
-  
-      game_message(user, dealer, false)
-      puts "Очки дилера #{dealer.points}"
-      puts
+      final_message(user, dealer)
     when 3
       dealer.move(deck.take_card)
-      # cls
-      puts ">>>>>> #{define_winner(user, dealer)} <<<<<<"
-  
-      game_message(user, dealer, false)
-      puts "Очки дилера #{dealer.points}"
-      puts
+      final_message(user, dealer)
     end
   end
 
@@ -93,9 +87,8 @@ class Game
     user = User.new
     dealer = Dealer.new
 
+    play_round(user, dealer)
     while true
-      play_round(user, dealer)
-
       puts "Хотите сыграть еще раунд y(yes)/n(no)"
       guess = gets.chomp
       
