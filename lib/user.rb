@@ -11,9 +11,9 @@ class User < Player
   end
 
   def move
-    puts "1. Добавить карту"
-    puts "2. Открыть карты"
-    puts "3. Пас"
+    puts '1. Добавить карту'
+    puts '2. Открыть карты'
+    puts '3. Пас'
     guess = gets.chomp.to_i
   end
 end

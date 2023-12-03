@@ -23,7 +23,7 @@ class Game
   def final_message(user, dealer)
     cls
     puts ">>>>>> #{define_winner(user, dealer)} <<<<<<"
-  
+
     game_message(user, dealer, false)
     puts "Очки дилера #{dealer.points}"
     puts
@@ -63,7 +63,7 @@ class Game
     end
 
     make_bet(user, dealer, 10)
-    
+
     puts "Игра №#{@rounds += 1}"
     puts "Деньги в игре: #{@money_in_game}"
 

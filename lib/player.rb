@@ -19,8 +19,7 @@ class Player
     @cards = []
   end
 
-  def move
-  end
+  def move; end
 
   def points
     points = 0
@@ -28,11 +27,8 @@ class Player
       if e.include?("K") || e.include?("Q") || e.include?("J") || e.include?("T")
         points += 10
       elsif e.include?("A")
-        points += 1
-        if points <= 10
-          points += 11
-        end
-      else 
+        points + 11 > 21 ? points += 1 : points += 11
+      else
         points += e.chr.to_i
       end
     end

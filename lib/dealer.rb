@@ -4,7 +4,7 @@ class Dealer < Player
   end
 
   def show_cards(secret)
-    secret == true ? secret_cards = (" * " * cards.size).split(" ") : cards
+    secret == true ? secret_cards = (' * ' * cards.size).split(' ') : cards
   end
 
   def move(card)

@@ -26,6 +26,6 @@ class Deck
       ranks << card.rank = element
     end
 
-    deck = ranks.product(suits).map(&:join) 
+    deck = ranks.product(suits).map(&:join)
   end
 end
