@@ -1,4 +1,4 @@
-class GameMethods
+class Game
   def initialize
     @rounds = 0
   end
@@ -40,8 +40,19 @@ class GameMethods
     end
   end
 
-  def play_round(user, dealer, deck)
-    cls
+  def play_round(user, dealer)
+    # cls
+    user.delete_cards
+    dealer.delete_cards
+
+    deck = Deck.new
+    deck.cards_shuffle
+
+    2.times do 
+      user.add_card(deck.take_card)
+      dealer.add_card(deck.take_card)
+    end
+
     make_bet(user, dealer, 10)
     
     puts "Игра №#{@rounds += 1}"
@@ -49,25 +60,33 @@ class GameMethods
 
     game_message(user, dealer, true)
     puts
-    while true
-      case user.move
-      when 1
-        user.add_card(deck.take_card)
-        dealer.move(deck.take_card)
-        break
-      when 2 then break 
-      when 3
-        dealer.move(deck.take_card)
-        break
-      end
-    end
-    
-    cls
-    puts ">>>>>> #{define_winner(user, dealer)} <<<<<<"
 
-    game_message(user, dealer, false)
-    puts "Очки дилера #{dealer.points}"
-    puts
+    case user.move
+    when 1
+      user.add_card(deck.take_card)
+      dealer.move(deck.take_card)
+      # cls
+      puts ">>>>>> #{define_winner(user, dealer)} <<<<<<"
+  
+      game_message(user, dealer, false)
+      puts "Очки дилера #{dealer.points}"
+      puts
+    when 2
+      # cls
+      puts ">>>>>> #{define_winner(user, dealer)} <<<<<<"
+  
+      game_message(user, dealer, false)
+      puts "Очки дилера #{dealer.points}"
+      puts
+    when 3
+      dealer.move(deck.take_card)
+      # cls
+      puts ">>>>>> #{define_winner(user, dealer)} <<<<<<"
+  
+      game_message(user, dealer, false)
+      puts "Очки дилера #{dealer.points}"
+      puts
+    end
   end
 
   def start_game
@@ -75,25 +94,13 @@ class GameMethods
     dealer = Dealer.new
 
     while true
-      user.delete_cards
-      dealer.delete_cards
-
-      deck = Deck.new
-      deck.cards_shuffle
-
-      user.add_card(deck.take_card)
-      user.add_card(deck.take_card)
-
-      dealer.add_card(deck.take_card)
-      dealer.add_card(deck.take_card)
-
-      play_round(user, dealer, deck)
+      play_round(user, dealer)
 
       puts "Хотите сыграть еще раунд y(yes)/n(no)"
       guess = gets.chomp
       
       if guess == "y" || guess == "yes"
-        play_round(user, dealer, deck)
+        play_round(user, dealer)
       else
         puts "Конец игры"
         break

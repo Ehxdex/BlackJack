@@ -28,10 +28,9 @@ class Player
       if e.include?("K") || e.include?("Q") || e.include?("J") || e.include?("T")
         points += 10
       elsif e.include?("A")
+        points += 1
         if points <= 10
           points += 11
-        else
-          points += 1
         end
       else 
         points += e.chr.to_i

@@ -1,9 +1,9 @@
-require_relative 'card'
-require_relative 'deck'
-require_relative 'player'
-require_relative 'dealer'
-require_relative 'user'
-require_relative 'game_methods'
+require_relative 'lib/card'
+require_relative 'lib/deck'
+require_relative 'lib/player'
+require_relative 'lib/dealer'
+require_relative 'lib/user'
+require_relative 'lib/game'
 
-game = GameMethods.new
+game = Game.new
 game.start_game
