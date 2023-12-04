@@ -21,15 +21,18 @@ class Player
 
   def move; end
 
-  def points
+  def points # make refactoring
     points = 0
     cards.each do |e|
       if e.include?("K") || e.include?("Q") || e.include?("J") || e.include?("T")
         points += 10
-      elsif e.include?("A")
-        points + 11 > 21 ? points += 1 : points += 11
       else
         points += e.chr.to_i
+      end
+    end
+    cards.each do |e|
+      if e.include?("A")
+        points + 11 > 21 ? points += 1 : points += 11
       end
     end
     points

@@ -32,20 +32,20 @@ class Game
   def define_winner(user, dealer)
     if dealer.points > 21 && dealer.points != user.points
       user.bank += @money_in_game
-      "Победил игрок"
+      'Победил игрок'
     elsif user.points > 21 && dealer.points != user.points
       dealer.bank += @money_in_game
-      "Победил дилер"
+      'Победил дилер'
     elsif user.points > dealer.points
       user.bank += @money_in_game
-      "Победил игрок"
+      'Победил игрок'
     elsif user.points < dealer.points
       dealer.bank += @money_in_game
-      "Победил дилер"
-    else 
+      'Победил дилер'
+    else
       user.bank += @money_in_game / 2
       dealer.bank += @money_in_game / 2
-      "Ничья"
+      'Ничья'
     end
   end
 
@@ -94,14 +94,14 @@ class Game
 
     play_round(user, dealer)
 
-    while true
-      puts "Хотите сыграть еще раунд y(yes)/n(no)"
+    loop do
+      puts 'Хотите сыграть еще раунд y(yes)/n(no)'
       guess = gets.chomp
-      
-      if guess == "y" || guess == "yes"
+
+      if guess.include?('y') || guess.include?('yes')
         play_round(user, dealer)
       else
-        puts "Конец игры."
+        puts 'Конец игры.'
         break
       end
     end
